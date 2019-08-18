@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="./css/app.css" />
+    <link rel="stylesheet" href="./css/materialize.min.css" />
+    <script src="https://kit.fontawesome.com/df9a35c61a.js"></script>
+    <title>Voice my text</title>
+  </head>
+  <body>
+    <main>
+      <h2>Voice my Text</h2>
+      <form action="javascript:void(0)" method="post">
+        <div class="input-field">
+          <textarea id="my_text" class="materialize-textarea"></textarea>
+          <label for="my_text">Type in your text</label>
+        </div>
+        <div class="input-field">
+          <select id="voice_option">
+            <option value="1">Female American</option>
+            <option value="2">Male American</option>
+            <option value="3">Female British</option>
+          </select>
+          <label>Choose the type of voice you want</label>
+        </div>
+        <div class="input-field buttons-customized">
+          <a class="waves-effect waves-light btn" id="generate_voice"
+            >Generate Voice</a
+          >
+          <a class="waves-effect waves-light btn" id="clear_text">Clear Text</a>
+        </div>
+      </form>
+    </main>
+    <footer>
+      <p>Follow me on</p>
+      <div class="social-media">
+        <a href="https://twitter.com/calebdeji06"
+          ><i class="fa fa-twitter"></i
+        ></a>
+        <a href="https://github.com/calebdeji"><i class="fa fa-github"></i></a>
+        <a href="https://instagram.com/calebdeji06">
+          <i class="fa fa-instagram"></i
+        ></a>
+      </div>
+      <p>
+        Developed by
+        <a href="http://calebdeji.github.io" target="_blanc">Calebdeji😉</a>
+      </p>
+    </footer>
+    <!--============================= JS section ================================-->
+    <script src="./js/app.js"></script>
+    <script src="./js/jquery-2.1.1.min.js"></script>
+    <script src="./js/materialize.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("select").material_select();
+      });
+    </script>
+    <!-- ======================================================================= -->
+  </body>
+</html>

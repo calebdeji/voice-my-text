@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+body main {
+  width: 70%;
+  margin: auto;
+}
+body main .buttons-customized {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+body main .buttons-customized a {
+  margin-right: 2em;
+  margin-top: 1em;
+}
+body footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

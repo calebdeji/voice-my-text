@@ -1,0 +1,7 @@
+{
+  "name": "Voice my Text",
+  "short_name": "Voice my Text",
+  "theme-color": "#26a69a",
+  "background-color": "#26a69a",
+  "start_url": "index.html"
+}
