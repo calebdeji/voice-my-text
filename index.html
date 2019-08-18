@@ -10,17 +10,27 @@
     <script src="https://kit.fontawesome.com/df9a35c61a.js"></script>
     <title>Voice my text</title>
   </head>
-  <body>
+  <body id="body">
     <main>
-      <h2>Voice my Text</h2>
-      <form action="javascript:void(0)" method="post">
+      <header>
+        <h2>Voice my Text</h2>
+        <div class="switch">
+          <label>
+            Off
+            <input type="checkbox" id="dark_mode" />
+            <span class="lever"></span>
+            Dark Mode
+          </label>
+        </div>
+      </header>
+      <form action="javascript:void(0)" method="post" id="form_main">
         <div class="input-field">
           <textarea id="my_text" class="materialize-textarea"></textarea>
           <label for="my_text">Type in your text</label>
         </div>
         <div class="input-field">
           <select id="voice_option">
-            <option value="1">Female American</option>
+            <option value="1" class="modified-color">Female American</option>
             <option value="2">Male American</option>
             <option value="3">Female British</option>
           </select>
@@ -51,14 +61,10 @@
       </p>
     </footer>
     <!--============================= JS section ================================-->
-    <script src="./js/app.js"></script>
+
     <script src="./js/jquery-2.1.1.min.js"></script>
     <script src="./js/materialize.min.js"></script>
-    <script>
-      $(document).ready(function() {
-        $("select").material_select();
-      });
-    </script>
+    <script src="./js/app.js"></script>
     <!-- ======================================================================= -->
   </body>
 </html>

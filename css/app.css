@@ -4,10 +4,27 @@
 body {
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 body main {
   width: 70%;
   margin: auto;
+}
+body main header h2 {
+  margin: 0;
+}
+body main header {
+  display: flex;
+  margin-top: 2em;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+body main header div.switch {
+  margin-top: 1em;
 }
 body main .buttons-customized {
   display: flex;
@@ -24,3 +41,11 @@ body footer {
   flex-direction: column;
   align-items: center;
 }
+
+/* ul.dropdown-content.select-dropdown.modified-color,
+ul.dropdown-content.select-dropdown.modified-color .active {
+  background-color: black !important;
+}
+ul.dropdown-content.select-dropdown li:hover {
+  background-color: white !important;
+} */
