@@ -61,7 +61,7 @@ let optionFieldValue = optionField.selectedIndex;
 
 const callApi = (text, voiceNeeded) => {
     console.log("Text is : ", text + " and voiceNeeded is : ", voiceNeeded);
-
+    generateVoiceButton.className = "waves-effect waves-light btn disabled";
 }
 
 
@@ -76,7 +76,7 @@ generateVoiceButton.addEventListener("click", () => {
     } else {
 
         availableVoiceOption.forEach((element) => {
-            if (element.key === optionFieldValue) {
+            if (element.key == optionFieldValue) {
                 callApi(textFieldTrim, element.voice);
             }
         });
