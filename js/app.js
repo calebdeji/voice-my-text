@@ -76,7 +76,7 @@ generateVoiceButton.addEventListener("click", () => {
     } else {
 
         availableVoiceOption.forEach((element) => {
-            if (element.key == optionFieldValue) {
+            if (element.key === optionFieldValue) {
                 callApi(textFieldTrim, element.voice);
             }
         });
@@ -86,7 +86,7 @@ optionFieldValueUpdate = () => {
     optionFieldValue = optionField.selectedIndex;
     console.log("Option Field Value is : ", optionFieldValue);
 }
-window.addEventListener("load", (event) => {
+window.addEventListener("DOMContentLoaded", (event) => {
     event.preventDefault();
     const optionElements = document.querySelector('.dropdown-content.select-dropdown');
     let db = localStorage.getItem("darkModeStatus");
