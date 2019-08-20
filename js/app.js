@@ -61,12 +61,13 @@ const updateUI = (bool) => {
 }
 
 console.log("available : ", availableVoiceOption);
-let optionFieldValue = optionField.selectedOption;
+let optionFieldValue = optionField.selectedIndex;
+console.log("optionField : ", optionFieldValue);
 
 const callApi = (text, voiceNeeded) => {
     const utterThis = new SpeechSynthesisUtterance(text);
-    // utterThis.voice = "Google US English (en-US)";
-    utterThis.voice = voiceNeeded;
+    console.log("voice needed is : ", voiceNeeded);
+    // utterThis.voice = voiceNeeded;
     synth.speak(utterThis);
 }
 
