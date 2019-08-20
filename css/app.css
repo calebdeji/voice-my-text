@@ -40,6 +40,11 @@ body footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 2em;
+}
+body footer .social-media a {
+  margin-right: 1em;
+  font-size: 3em;
 }
 
 /* ul.dropdown-content.select-dropdown.modified-color,
