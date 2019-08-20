@@ -88,7 +88,7 @@ const optionFieldValueUpdate = () => {
     optionFieldPassed = optionsElements[optionFieldValue].textContent;
     console.log("Option Field Value is : ", optionFieldValue);
 }
-window.addEventListener("DOMContentLoaded", (event) => {
+window.addEventListener("load", (event) => {
     event.preventDefault();
     const optionElements = document.querySelector('.dropdown-content.select-dropdown');
     let db = localStorage.getItem("darkModeStatus");
