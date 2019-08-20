@@ -96,7 +96,7 @@ window.addEventListener("load", (event) => {
         localStorage.setItem("darkModeStatus", "false");
         body.style.backgroundColor = "white";
         optionElements.style.backgroundColor = "black";
-        darkModeButton.checked = true;
+        darkModeButton.checked = fasle;
     } else {
         if (db == "true") {
             console.log("true");
