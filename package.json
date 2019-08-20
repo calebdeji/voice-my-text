@@ -1,0 +1,18 @@
+{
+  "name": "voice-my-text",
+  "version": "1.0.0",
+  "description": "Playing with ibm api ",
+  "main": "index.html",
+  "scripts": {
+    "test": "yarn"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/calebdeji/voice-my-text\\n"
+  },
+  "keywords": [
+    "api"
+  ],
+  "author": "calebdeji",
+  "license": "ISC"
+}

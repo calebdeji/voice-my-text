@@ -60,8 +60,19 @@ const availableVoiceOption = [{
 let optionFieldValue = optionField.selectedIndex;
 
 const callApi = (text, voiceNeeded) => {
+    let data;
+    const apiUrl = "https://gateway-lon.watsonplatform.net/text-to-speech/api";
+    const api_key = "LBkt6caJAgBB_Go7B-5MTOwAYRWHOMF2kvTIbMFFNqBZ";
     console.log("Text is : ", text + " and voiceNeeded is : ", voiceNeeded);
     generateVoiceButton.className = "waves-effect waves-light btn disabled";
+    fetch(`${apiUrl}?apikey=${api_key}`).then((response) => {
+        return response.json();
+    }).then((processed) => {
+        data = processed;
+        console.log("data : ", data);
+    }).catch((err) => {
+        console.log("unable to fetch api");
+    })
 }
 
 
