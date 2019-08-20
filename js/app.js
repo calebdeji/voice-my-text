@@ -74,13 +74,11 @@ generateVoiceButton.addEventListener("click", () => {
 });
 
 const callApi = (text, voiceNeeded) => {
-    generateVoiceButton.className = "waves-effect waves-light btn disabled";
     console.log("call api seen here");
     const utterThis = new SpeechSynthesisUtterance(text);
     console.log("voice needed is : ", voiceNeeded);
     utterThis.voice = voiceNeeded;
     synth.speak(utterThis);
-    generateVoiceButton.className = "waves-effect waves-light btn"
 }
 
 
