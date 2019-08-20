@@ -18,6 +18,19 @@ const textField = document.querySelector('#my_text');
 const generateVoiceButton = document.querySelector('#generate_voice');
 const optionField = document.getElementById('voice_option');
 const darkModeButton = document.getElementById('dark_mode');
+const availableVoiceOption = [{
+        key: "0",
+        voice: "Google US English"
+    },
+    {
+        key: "1",
+        voice: "Google UK English Female"
+    },
+    {
+        key: "2",
+        voice: "Google UK English Male"
+    }
+];
 const body = document.getElementById('body');
 darkModeButton.addEventListener("click", () => {
     console.log("dark mode status");
