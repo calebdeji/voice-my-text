@@ -18,19 +18,13 @@ const textField = document.querySelector('#my_text');
 const generateVoiceButton = document.querySelector('#generate_voice');
 const optionField = document.getElementById('voice_option');
 const darkModeButton = document.getElementById('dark_mode');
-const availableVoiceOption = [{
-        key: "0",
-        voice: "Google US English"
-    },
-    {
-        key: "1",
-        voice: "Google UK English Female"
-    },
-    {
-        key: "2",
-        voice: "Google UK English Male"
-    }
-];
+let optionsElements = document.getElementById('voice_option').options;
+let optionFieldValue = optionField.selectedIndex;
+let optionFieldPassed = optionsElements[optionFieldValue].textContent;
+console.log("optionField : ", optionFieldPassed);
+const availableVoiceOption = synth.onvoiceschanged = () => {
+    return synth.getVoices();
+}
 const body = document.getElementById('body');
 darkModeButton.addEventListener("click", () => {
     console.log("dark mode status");
@@ -60,18 +54,6 @@ const updateUI = (bool) => {
     }
 }
 
-console.log("available : ", availableVoiceOption);
-let optionFieldValue = optionField.selectedIndex;
-console.log("optionField : ", optionFieldValue);
-
-const callApi = (text, voiceNeeded) => {
-    const utterThis = new SpeechSynthesisUtterance(text);
-    console.log("voice needed is : ", voiceNeeded);
-    // utterThis.voice = voiceNeeded;
-    synth.speak(utterThis);
-}
-
-
 generateVoiceButton.addEventListener("click", () => {
     /**
      * this trims the trailing whitespace of the input text
@@ -82,15 +64,30 @@ generateVoiceButton.addEventListener("click", () => {
         return alert("Kindly fill in the text field");
     } else {
         // console.log(availableVoiceOption);
-        availableVoiceOption.forEach((element) => {
-            if (element.key == optionFieldValue) {
-                callApi(textFieldTrim, element.voice);
+        const availableVoiceArray = availableVoiceOption();
+        availableVoiceArray.forEach((element) => {
+            if (element.name == optionFieldPassed) {
+                callApi(textFieldTrim, element);
             }
         });
     }
 });
-optionFieldValueUpdate = () => {
+
+const callApi = (text, voiceNeeded) => {
+    generateVoiceButton.className = "waves-effect waves-light btn disabled";
+    console.log("call api seen here");
+    const utterThis = new SpeechSynthesisUtterance(text);
+    console.log("voice needed is : ", voiceNeeded);
+    utterThis.voice = voiceNeeded;
+    synth.speak(utterThis);
+    generateVoiceButton.className = "waves-effect waves-light btn"
+}
+
+
+
+const optionFieldValueUpdate = () => {
     optionFieldValue = optionField.selectedIndex;
+    optionFieldPassed = optionsElements[optionFieldValue].textContent;
     console.log("Option Field Value is : ", optionFieldValue);
 }
 window.addEventListener("DOMContentLoaded", (event) => {
