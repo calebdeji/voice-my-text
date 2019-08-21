@@ -13,19 +13,21 @@ $(document).ready(function () {
     });
 });
 const synth = window.speechSynthesis;
+const body = document.getElementById('body');
 // const formMain = document.getElementById('form_main');
 const textField = document.querySelector('#my_text');
 const generateVoiceButton = document.querySelector('#generate_voice');
+const clearTextButton = document.querySelector('#clear_text');
 const optionField = document.getElementById('voice_option');
 const darkModeButton = document.getElementById('dark_mode');
 let optionsElements = document.getElementById('voice_option').options;
 let optionFieldValue = optionField.selectedIndex;
 let optionFieldPassed = optionsElements[optionFieldValue].textContent;
-console.log("optionField : ", optionFieldPassed);
+// console.log("optionField : ", optionFieldPassed);
 const availableVoiceOption = synth.onvoiceschanged = () => {
     return synth.getVoices();
 }
-const body = document.getElementById('body');
+
 darkModeButton.addEventListener("click", () => {
     console.log("dark mode status");
     let db = localStorage.getItem("darkModeStatus");
@@ -38,21 +40,6 @@ darkModeButton.addEventListener("click", () => {
     }
 
 });
-const updateUI = (bool) => {
-    const optionElements = document.querySelector('.dropdown-content.select-dropdown');
-    if (bool == "true") {
-        body.style.backgroundColor = "black";
-        body.style.color = "white";
-        darkModeButton.checked = true;
-        optionElements.style.backgroundColor = "black";
-    } else {
-        body.style.backgroundColor = "white";
-        body.style.color = "black";
-        darkModeButton.checked = false;
-        optionElements.style.backgroundColor = "white";
-
-    }
-}
 
 generateVoiceButton.addEventListener("click", () => {
     /**
@@ -73,6 +60,31 @@ generateVoiceButton.addEventListener("click", () => {
     }
 });
 
+
+clearTextButton.addEventListener("click", () => {
+    /**
+     * To clear the text in the textField
+     */
+    textField.value = "";
+});
+
+
+const updateUI = (bool) => {
+    const optionElements = document.querySelector('.dropdown-content.select-dropdown');
+    if (bool == "true") {
+        body.style.backgroundColor = "black";
+        body.style.color = "white";
+        darkModeButton.checked = true;
+        optionElements.style.backgroundColor = "black";
+    } else {
+        body.style.backgroundColor = "white";
+        body.style.color = "black";
+        darkModeButton.checked = false;
+        optionElements.style.backgroundColor = "white";
+
+    }
+}
+
 const callApi = (text, voiceNeeded) => {
     console.log("call api seen here");
     const utterThis = new SpeechSynthesisUtterance(text);
@@ -84,10 +96,18 @@ const callApi = (text, voiceNeeded) => {
 
 
 const optionFieldValueUpdate = () => {
+    /**
+     * this gives the selected index of the option chosen
+     */
     optionFieldValue = optionField.selectedIndex;
+
+    /**
+     * this gives the text of the option chosen
+     */
     optionFieldPassed = optionsElements[optionFieldValue].textContent;
-    console.log("Option Field Value is : ", optionFieldValue);
+    // console.log("Option Field Value is : ", optionFieldValue);
 }
+
 window.addEventListener("load", (event) => {
     event.preventDefault();
     const optionElements = document.querySelector('.dropdown-content.select-dropdown');
