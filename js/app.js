@@ -90,7 +90,7 @@ const callApi = (text, voiceNeeded) => {
     const utterThis = new SpeechSynthesisUtterance(text);
     console.log("voice needed is : ", voiceNeeded);
     utterThis.voice = voiceNeeded;
-    window.speechSynthesis.speak('hello');
+    window.speechSynthesis.speak(utterThis);
 }
 
 
