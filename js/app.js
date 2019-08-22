@@ -4,29 +4,68 @@
  * and to call the function optionFieldValueUpdate whenever the voice selection changes
  */
 
+
+
 $(document).ready(function () {
-    $("select").material_select();
+
     // $("select").material_select("destroy");
 
     $("#voice_option").change(() => {
         optionFieldValueUpdate();
     });
 });
+const availableVoiceOption = () => {
+    return new Promise((resolve, reject) => {
+        let id = setInterval(() => {
+            if (synth.getVoices().length !== 0) {
+                resolve(synth.getVoices());
+                clearInterval(id);
+            }
+        }, 10);
+    })
+}
+const populateSelect = async () => {
+    let voicesArray = await availableVoiceOption();
+    console.log("voices array : ", voicesArray);
+    let arrayVar = []
+    const optionField = document.querySelector('#voice_option');
+    console.log("optionField : ", optionField);
+    for (let i = 0; i < voicesArray.length; i++) {
+        if (voicesArray[i].name.match(/UK/g) || voicesArray[i].name.match(/US/g) || voicesArray[i].name.match(/English/g) || voicesArray[i].name.match(/Korean/g)) {
+            arrayVar.push(voicesArray[i].name);
+            const optionElement = document.createElement("option");
+            optionElement.setAttribute("id", i);
+            optionElement.setAttribute("class", "modified-dev");
+            optionElement.textContent = voicesArray[i].name;
+            optionField.appendChild(optionElement);
+        }
+    }
+    $("select").material_select();
+    console.log("array : ", arrayVar);
+    return arrayVar;
+}
+// populateSelect().then((data) => console.log("populate called"));
 const synth = window.speechSynthesis;
 const body = document.getElementById('body');
 // const formMain = document.getElementById('form_main');
-const textField = document.querySelector('#my_text');
+const textField = document.getElementById('my_text');
 const generateVoiceButton = document.querySelector('#generate_voice');
 const clearTextButton = document.querySelector('#clear_text');
 const optionField = document.getElementById('voice_option');
 const darkModeButton = document.getElementById('dark_mode');
 let optionsElements = document.getElementById('voice_option').options;
+optionField.selectedIndex = 1;
 let optionFieldValue = optionField.selectedIndex;
-let optionFieldPassed = optionsElements[optionFieldValue].textContent;
-// console.log("optionField : ", optionFieldPassed);
-const availableVoiceOption = synth.onvoiceschanged = () => {
-    return synth.getVoices();
-}
+let optionFieldPassed = populateSelect().then((data) => {
+    return data[0];
+})
+
+
+
+// $("select").material_select();
+// console.log("options : ", optionFieldPassed);
+console.log("optionField : ", optionFieldPassed);
+
 
 darkModeButton.addEventListener("click", () => {
     console.log("dark mode status");
@@ -51,12 +90,27 @@ generateVoiceButton.addEventListener("click", () => {
         return alert("Kindly fill in the text field");
     } else {
         // console.log(availableVoiceOption);
-        const availableVoiceArray = availableVoiceOption();
-        availableVoiceArray.forEach((element) => {
-            if (element.name == optionFieldPassed) {
-                callApi(textFieldTrim, element);
+        availableVoiceOption().then((data) => {
+            console.log("Option Field Passed : ", optionFieldPassed);
+            try {
+                optionFieldPassed.then((response) => {
+                    const availableVoiceArray = data;
+                    availableVoiceArray.forEach((element) => {
+                        if (element.name == response) {
+                            callApi(textFieldTrim, element);
+                        }
+                    });
+                })
+            } catch (err) {
+                const availableVoiceArray = data;
+                availableVoiceArray.forEach((element) => {
+                    if (element.name == optionFieldPassed) {
+                        callApi(textFieldTrim, element);
+                    }
+                });
             }
         });
+
     }
 });
 
@@ -75,7 +129,7 @@ const updateUI = (bool) => {
         body.style.backgroundColor = "black";
         body.style.color = "white";
         darkModeButton.checked = true;
-        optionElements.style.backgroundColor = "black";
+        // optionElements.style.backgroundColor = "black";
     } else {
         body.style.backgroundColor = "white";
         body.style.color = "black";
