@@ -43,7 +43,8 @@ body footer {
   margin-top: 2em;
 }
 body footer .social-media a {
-  margin-right: 1em;
+  margin-right: 0.5em;
+  margin-left: 0.5em;
   font-size: 3em;
 }
 
