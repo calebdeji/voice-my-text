@@ -129,7 +129,7 @@ const updateUI = (bool) => {
         body.style.backgroundColor = "black";
         body.style.color = "white";
         darkModeButton.checked = true;
-        // optionElements.style.backgroundColor = "black";
+        optionElements.style.backgroundColor = "black";
     } else {
         body.style.backgroundColor = "white";
         body.style.color = "black";
