@@ -26,10 +26,10 @@ const availableVoiceOption = () => {
 }
 const populateSelect = async () => {
     let voicesArray = await availableVoiceOption();
-    console.log("voices array : ", voicesArray);
+    // console.log("voices array : ", voicesArray);
     let arrayVar = []
     const optionField = document.querySelector('#voice_option');
-    console.log("optionField : ", optionField);
+    // console.log("optionField : ", optionField);
     for (let i = 0; i < voicesArray.length; i++) {
         if (voicesArray[i].name.match(/UK/g) || voicesArray[i].name.match(/US/g) || voicesArray[i].name.match(/English/g) || voicesArray[i].name.match(/Korean/g)) {
             arrayVar.push(voicesArray[i].name);
@@ -41,7 +41,7 @@ const populateSelect = async () => {
         }
     }
     $("select").material_select();
-    console.log("array : ", arrayVar);
+    // console.log("array : ", arrayVar);
     return arrayVar;
 }
 // populateSelect().then((data) => console.log("populate called"));
@@ -64,11 +64,11 @@ let optionFieldPassed = populateSelect().then((data) => {
 
 // $("select").material_select();
 // console.log("options : ", optionFieldPassed);
-console.log("optionField : ", optionFieldPassed);
+// console.log("optionField : ", optionFieldPassed);
 
 
 darkModeButton.addEventListener("click", () => {
-    console.log("dark mode status");
+    // console.log("dark mode status");
     let db = localStorage.getItem("darkModeStatus");
     if (db == "true") {
         localStorage.setItem("darkModeStatus", "false");
@@ -91,7 +91,7 @@ generateVoiceButton.addEventListener("click", () => {
     } else {
         // console.log(availableVoiceOption);
         availableVoiceOption().then((data) => {
-            console.log("Option Field Passed : ", optionFieldPassed);
+            // console.log("Option Field Passed : ", optionFieldPassed);
             try {
                 optionFieldPassed.then((response) => {
                     const availableVoiceArray = data;
@@ -140,9 +140,9 @@ const updateUI = (bool) => {
 }
 
 const callApi = (text, voiceNeeded) => {
-    console.log("call api seen here");
+    // console.log("call api seen here");
     const utterThis = new SpeechSynthesisUtterance(text);
-    console.log("voice needed is : ", voiceNeeded);
+    // console.log("voice needed is : ", voiceNeeded);
     utterThis.voice = voiceNeeded;
     window.speechSynthesis.speak(utterThis);
 }
@@ -173,10 +173,10 @@ window.addEventListener("load", (event) => {
         darkModeButton.checked = fasle;
     } else {
         if (db == "true") {
-            console.log("true");
+            // console.log("true");
             updateUI("true")
         } else {
-            console.log("false");
+            // console.log("false");
             updateUI("false");
         }
     }
