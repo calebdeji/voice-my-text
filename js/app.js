@@ -170,7 +170,7 @@ window.addEventListener("load", (event) => {
         localStorage.setItem("darkModeStatus", "false");
         body.style.backgroundColor = "white";
         optionElements.style.backgroundColor = "black";
-        darkModeButton.checked = fasle;
+        darkModeButton.checked = false;
     } else {
         if (db == "true") {
             // console.log("true");
